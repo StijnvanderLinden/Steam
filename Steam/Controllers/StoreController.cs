@@ -121,10 +121,12 @@ namespace Steam.Controllers
                     if (!naam)
                     {
                         Games.games.Sort(new NaamComparer());
+                        naam = true;
                     }
                     else
                     {
                         Games.games.Sort(new NaamDescComparer());
+                        naam = false;
                     }
                     break;
 
@@ -132,10 +134,12 @@ namespace Steam.Controllers
                     if (!prijs)
                     {
                         Games.games.Sort(new PrijsComparer());
+                        prijs = true;
                     }
                     else
                     {
                         Games.games.Sort(new PrijsDescComparer());
+                        prijs = false;
                     }
                     break;
 
@@ -143,14 +147,16 @@ namespace Steam.Controllers
                     if (!sterren)
                     {
                         Games.games.Sort(new SterrenComparer());
+                        sterren = true;
                     }
                     else
                     {
                         Games.games.Sort(new SterrenDescComparer());
+                        sterren = false;
                     }
                     break;
             }
-            return View("");
+            return View("Index");
         }
     }
 }
