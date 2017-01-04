@@ -1,0 +1,110 @@
+﻿<link href="~/Content/Details.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+@using Steam.Models
+@model Game
+@{
+    ViewBag.Title = "Details";
+    Account account = (Account)HttpContext.Current.Session["Account"];
+    Session["Game"] = Model;
+}
+
+<h2>Details</h2>
+
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <img src=@Model.IMGUrl class="img-responsive" height="300">
+            </div>
+            <div class="col-md-6">
+                <h1>@Model.Naam</h1>
+                <h3>€@Model.Prijs</h3>
+                <h3>Sterren: @Model.Sterren</h3>
+                <p>
+                    @Model.Beschrijving
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (account is Speler)
+{
+    using (Html.BeginForm("Toevoegen", "Store", new { id = Model.ID }))
+    {
+        <button id="Toevoegen" type="submit" class="btn btn-primary">Toevoegen aan winkelwagen</button>
+    }
+    <button id="ReviewButton" type="button" class="btn btn-default" onclick="Toggle()">Review schrijven</button>
+    <form action="/Store/Review" method="post">
+        <div id="Review" hidden>
+            <input class="form-control" name="titel" type="text" placeholder="Titel">
+            <br>
+            <textarea class="form-control" name="comment" placeholder="Commentaar" rows="3" cols="100"></textarea>
+            <label>Sterren:</label>
+            <div id="inline">
+                <br>
+                <div id="inline">
+                    @Html.RadioButton("sterren", 1, new { id = "1" }) 1
+                    @Html.RadioButton("sterren", 2, new { id = "2" }) 2
+                    @Html.RadioButton("sterren", 3, new { id = "3" }) 3
+                    @Html.RadioButton("sterren", 4, new { id = "4" }) 4
+                    @Html.RadioButton("sterren", 5, new { id = "5" }) 5
+                </div>
+            </div>
+            <br>
+            <br>
+            <div id="inline">
+                <button id="Bevestigen" type="submit" class="btn btn-default">Bevestigen</button>
+                <button type="button" class="btn btn-default" onclick="Toggle()">Annuleren</button>
+            </div>
+        </div>
+    </form>
+}
+@if (account is Beheerder)
+{
+
+}
+<br>
+<h2>Reviews</h2>
+<br>
+@if (Model.GetReviews(Model.ID).Count == 0)
+{
+    <p>Er zijn nog geen reviews voor deze game.</p>
+}
+else
+{
+    foreach (Review review in Model.GetReviews(Model.ID))
+    {
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="well">
+                            <h3>@review.Speler.Nickname</h3>
+                            <h4>@review.Titel</h4>
+                            <p>
+                                @review.Comment
+                            </p>
+                            <h4>@review.AantalSterren</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+<script>
+    function Toggle() {
+        $("#Review").toggle();
+        $("#ReviewButton").toggle();
+    }
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#Bevestigen').click(function () {
+
+            location.reload();
+        });
+    });
+</script>

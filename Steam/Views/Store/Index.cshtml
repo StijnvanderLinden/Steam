@@ -1,0 +1,38 @@
+﻿@using Steam.Models
+@using System.Data;
+@using System.Web.UI.WebControls;
+@model Games
+<link href="~/Content/Store.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+@{
+    ViewBag.Title = "Store";
+}
+
+<h2>Store</h2>
+
+<table class="table">
+    <tr>
+        <td></td>
+        <td><a href="" >Naam</a></td>
+        <td>Prijs</td>
+        <td>Sterren</td>
+    </tr>
+    
+    @foreach (Game game in Model.games)
+    {
+        <tr>
+            <td>
+                <a href="@Url.Action("Details", "Store", new { id = game.ID} )"><img src=@game.IMGUrl height="150"></a>
+            </td>
+            <td>
+                @game.Naam
+            </td>
+            <td>
+                €@game.Prijs
+            </td>
+            <td>
+                @game.Sterren
+            </td>
+        </tr>
+    }
+</table>

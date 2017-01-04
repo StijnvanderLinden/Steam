@@ -1,0 +1,25 @@
+﻿@using Steam.Models
+@{
+    ViewBag.Title = "Index";
+    Speler speler = (Speler)HttpContext.Current.Session["Account"];
+}
+
+<h2>Bibliotheek</h2>
+@if(speler.Games.Count == 0)
+{
+    <br>
+    <p>Je hebt geen games in je bibliotheek.</p>
+}
+<table class="table">
+    @foreach (var game in speler.Games)
+    {
+        <tr>
+            <td>
+                <a href="@Url.Action("Details", "Store", new { id = game.ID} )"><img src=@game.IMGUrl height="150"></a>
+            </td>
+            <td>
+                @game.Naam
+            </td>
+        </tr>
+    }
+</table>

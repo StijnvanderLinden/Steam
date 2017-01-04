@@ -1,0 +1,19 @@
+﻿<link href="~/Content/Inloggen.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "Inloggen";
+}
+<div class="position">
+    <form action="/Inlog/Login" method="post">
+        <h2>Inloggen</h2>
+        <br />
+        <div class="form-group">
+            <label for="inlognaam">Inlognaam</label>
+            <input type="text" class="form-control" name="inlognaam">
+        </div>
+        <div class="form-group">
+            <label for="wachtwoord">Wachtwoord</label>
+            <input type="password" class="form-control" name="wachtwoord">
+        </div>
+        <button type="submit" id="Login" class="btn btn-default">Log in</button>
+    </form>
+</div>

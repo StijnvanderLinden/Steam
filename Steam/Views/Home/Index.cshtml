@@ -1,0 +1,36 @@
+﻿@using Steam.Models
+@model Games
+<link href="~/Content/Home.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "Home";
+    List<Game> games = Model.GetAllGames();
+    Random r = new Random();
+}
+<br>
+<br>
+<br>
+<div class="section">
+    <div class="container">
+        <div class="row">
+            @for (int i = 0; i < 3; i++)
+            {
+                int index = r.Next(1, games.Count());
+                <div class="col-md-4">
+                    <a href="@Url.Action("Details", "Store", new { id = @games[index].ID} )"><img src=@games[index].IMGUrl height="170"></a>
+                    <h2>@games[index].Naam</h2>
+                </div>
+                games.RemoveAt(index);
+            }
+        </div>
+    </div>
+</div>
+<br>
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Bekijk <a href="~/Store/Index">hier</a> al onze games!</h2>
+            </div>
+        </div>
+    </div>
+</div>

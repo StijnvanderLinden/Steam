@@ -1,0 +1,52 @@
+﻿<link href="~/Content/Bestelling.css" rel="stylesheet" />
+@using Steam.Models
+@{
+    ViewBag.Title = "Index";
+    Speler speler = (Speler)HttpContext.Current.Session["Account"];
+    decimal totaalPrijs = 0;
+}
+@if (speler.Winkelwagen.Games.Count == 0)
+{
+    <h2>Bestelling</h2>
+    <br>
+    <p>Er staan geen producten in je bestelling.</p>
+}
+else
+{
+    <h2>
+        Bestelling - Totaalprijs: €
+        @foreach (Game game in speler.Winkelwagen.Games)
+        {
+            totaalPrijs += game.Prijs;
+        }
+        @totaalPrijs
+    </h2>
+}
+@foreach (Game game in speler.Winkelwagen.Games)
+{
+    <table class="table">
+        <tr>
+            <td>
+                <a href="@Url.Action("Details", "Store", new { id = game.ID} )"><img src=@game.IMGUrl height="150"></a>
+            </td>
+            <td>
+                €@game.Prijs
+            </td>
+            <td>
+                @using (Html.BeginForm("Delete", "Bestelling", new { id = game.ID }))
+                {
+                    <button type="submit" class="btn btn-default">Delete</button>
+                }
+            </td>
+        </tr>
+    </table>
+    <br>
+}
+
+@if (speler.Winkelwagen.Games.Count > 0)
+{
+    using (Html.BeginForm("Afronden", "Bestelling"))
+    {
+        <button id="afronden" type="submit" class="btn btn-success">Bestelling afronden</button>
+    }
+}

@@ -1,0 +1,62 @@
+﻿@using Steam.Models;
+@{
+    Account account = (Account)HttpContext.Current.Session["Account"];
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steam - @ViewBag.Title</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-header" href="/Home/Index"><img src="http://i.imgur.com/Fnqg9se.png" height="50" width="50" /></a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/Store/Index" class="navbar-brand">Store</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (account is Speler)
+                    {
+                        <li>@Html.ActionLink(account.Nickname, "Index", "Bibliotheek")</li>
+                        <li>@Html.ActionLink("Bibliotheek", "Index", "Bibliotheek")</li>
+                        <li>@Html.ActionLink("Bestelling", "Index", "Bestelling")</li>
+                        <li>@Html.ActionLink("Uitloggen", "Uitloggen", "Inlog")</li>
+                    }
+                    else if (account is Beheerder)
+                    {
+
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Registreren", "Index", "Registreer")</li>
+                        <li>@Html.ActionLink("Log in", "Index", "Inlog")</li>
+                    }
+
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+    </div>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

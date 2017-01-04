@@ -1,0 +1,35 @@
+﻿body {
+}
+
+
+#Review{
+    position:relative;
+    margin-top:3%;
+}
+
+#Comment{
+    width:50%;
+}
+
+#Toevoegen{
+    position: relative;
+    margin-top:2%;
+}
+
+#ReviewButton{
+    position: relative;
+    margin-top:3%;
+}
+
+#inline {
+    display: inline-block;
+    margin-left:10px;
+}
+
+#marginleftradio{
+    margin-left:5px;
+}
+
+#marginleftlabel{
+    margin-left:11px;
+}
