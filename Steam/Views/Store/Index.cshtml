@@ -4,35 +4,45 @@
 @model Games
 <link href="~/Content/Store.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
 @{
     ViewBag.Title = "Store";
 }
 
 <h2>Store</h2>
 
-<table class="table">
-    <tr>
-        <td></td>
-        <td><a href="" >Naam</a></td>
-        <td>Prijs</td>
-        <td>Sterren</td>
-    </tr>
-    
-    @foreach (Game game in Model.games)
-    {
+<table id="Table" class="table">
+    <thead>
         <tr>
-            <td>
-                <a href="@Url.Action("Details", "Store", new { id = game.ID} )"><img src=@game.IMGUrl height="150"></a>
-            </td>
-            <td>
-                @game.Naam
-            </td>
-            <td>
-                €@game.Prijs
-            </td>
-            <td>
-                @game.Sterren
-            </td>
+            <th></th>
+            <th><a href="@Url.Action("Compare", "Store", new { comparer = "naam" } )">Naam</a></th>
+            <th><a href="@Url.Action("Compare", "Store", new { comparer = "naam" } )">Prijs</a></th>
+            <th><a href="@Url.Action("Compare", "Store", new { comparer = "naam" } )">Sterren</a></th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (Game game in Model.games)
+        {
+            <tr>
+                <td>
+                    <a href="@Url.Action("Details", "Store", new { id = game.ID} )"><img src=@game.IMGUrl height="150"></a>
+                </td>
+                <td>
+                    @game.Naam
+                </td>
+                <td>
+                    €@game.Prijs
+                </td>
+                <td>
+                    @game.Sterren
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+<script>
+    $(document).ready(function () {
+        $("#Table").tablesorter({ sortList: [[0, 0], [1, 0]] });
+    }
+);
+</script>

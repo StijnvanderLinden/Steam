@@ -11,10 +11,5 @@ namespace Steam.Context
 {
     public class ReviewSQL : IReview
     {
-        DatabaseConnection databaseConnection;
-        public ReviewSQL()
-        {
-            databaseConnection = new DatabaseConnection();
-        }
     }
 }

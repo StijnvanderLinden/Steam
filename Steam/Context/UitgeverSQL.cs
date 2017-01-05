@@ -10,18 +10,13 @@ namespace Steam.Context
 {
     public class UitgeverSQL : IUitgever
     {
-        DatabaseConnection databaseConnection;
-        public UitgeverSQL()
-        {
-            databaseConnection = new DatabaseConnection();
-        }
 
         public Uitgever GetUitgeverByID(int ID)
         {
             string query = "SELECT * FROM UITGEVER WHERE ID = @ID";
             var command = new SqlCommand(query);
             command.Parameters.AddWithValue("@ID", ID);
-            SqlDataReader reader = databaseConnection.ExecuteQueryReader(command);
+            SqlDataReader reader = DatabaseConnection.DbConnectionInstance.ExecuteQueryReader(command);
             Uitgever uitgever = new Uitgever(ID);
             while (reader.Read())
             {

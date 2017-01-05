@@ -12,18 +12,12 @@ namespace Steam.Context
 {
     public class GameSQL : IGame
     {
-        DatabaseConnection databaseConnection;
-
-        public GameSQL()
-        {
-            databaseConnection = new DatabaseConnection();
-        }
         public Game GetGameByID(int ID)
         {
             string query = "SELECT * FROM GAME WHERE ID = @ID";
             var command = new SqlCommand(query);
             command.Parameters.AddWithValue("@ID", ID);
-            SqlDataReader reader = databaseConnection.ExecuteQueryReader(command);
+            SqlDataReader reader = DatabaseConnection.DbConnectionInstance.ExecuteQueryReader(command);
             Game game = new Game();
             while (reader.Read())
             {
@@ -42,7 +36,7 @@ namespace Steam.Context
         {
             string query = "SELECT * FROM GAME";
             var command = new SqlCommand(query);
-            SqlDataReader reader = databaseConnection.ExecuteQueryReader(command);
+            SqlDataReader reader = DatabaseConnection.DbConnectionInstance.ExecuteQueryReader(command);
             List<Game> games = new List<Game>();
             while (reader.Read())
             {
@@ -68,7 +62,7 @@ namespace Steam.Context
             command.Parameters.AddWithValue("@IMGUrl", game.IMGUrl);
             command.Parameters.AddWithValue("@Sterren", game.Sterren);
             command.Parameters.AddWithValue("@Beschrijving", game.Beschrijving);
-            databaseConnection.ExecuteQuery(command);
+            DatabaseConnection.DbConnectionInstance.ExecuteQuery(command);
         }
 
         public void DeleteGame(Game game)
@@ -76,7 +70,7 @@ namespace Steam.Context
             string query = "DELETE FROM GAME WHERE ID = @gameID";
             var command = new SqlCommand(query);
             command.Parameters.AddWithValue("@gameID", game.ID);
-            databaseConnection.ExecuteQuery(command);
+            DatabaseConnection.DbConnectionInstance.ExecuteQuery(command);
         }
 
         public void UpdateSterren(Game game)
@@ -85,7 +79,7 @@ namespace Steam.Context
             var command = new SqlCommand(query);
             command.Parameters.AddWithValue("@sterren", game.Sterren);
             command.Parameters.AddWithValue("@ID", game.ID);
-            databaseConnection.ExecuteQuery(command);
+            DatabaseConnection.DbConnectionInstance.ExecuteQuery(command);
         }
 
         public List<Review> GetReviewsByGameID(int ID)
@@ -93,7 +87,7 @@ namespace Steam.Context
             string query = "SELECT * FROM REVIEW WHERE GameID = @ID";
             var command = new SqlCommand(query);
             command.Parameters.AddWithValue("@ID", ID);
-            SqlDataReader reader = databaseConnection.ExecuteQueryReader(command);
+            SqlDataReader reader = DatabaseConnection.DbConnectionInstance.ExecuteQueryReader(command);
             List<Review> reviews = new List<Review>();
             while (reader.Read())
             {

@@ -10,19 +10,13 @@ namespace Steam.Context
 {
     public class BeheerderSQL : IBeheerder
     {
-        DatabaseConnection databaseConnection;
-        public BeheerderSQL()
-        {
-            databaseConnection = new DatabaseConnection();
-        }
-
         public Beheerder GetBeheerder(Beheerder beheerder)
         {
             string query = "SELECT * FROM ACCOUNT WHERE INLOGNAAM = @inlognaam AND WACHTWOORD = @wachtwoord";
             var command = new SqlCommand(query);
             command.Parameters.AddWithValue("@inlognaam", beheerder.Inlognaam);
             command.Parameters.AddWithValue("@wachtwoord", beheerder.Wachtwoord);
-            SqlDataReader reader = databaseConnection.ExecuteQueryReader(command);
+            SqlDataReader reader = DatabaseConnection.DbConnectionInstance.ExecuteQueryReader(command);
             if (reader.Read())
             {
                 beheerder.ID = reader.GetInt32(0);
@@ -46,7 +40,7 @@ namespace Steam.Context
             var command = new SqlCommand(query);
             command.Parameters.AddWithValue("@inlognaam", inlognaam);
             command.Parameters.AddWithValue("@wachtwoord", wachtwoord);
-            SqlDataReader reader = databaseConnection.ExecuteQueryReader(command);
+            SqlDataReader reader = DatabaseConnection.DbConnectionInstance.ExecuteQueryReader(command);
 
             while (reader.Read())
             {
@@ -64,7 +58,7 @@ namespace Steam.Context
             var command = new SqlCommand(query);
             command.Parameters.AddWithValue("@inlognaam", inlognaam);
             command.Parameters.AddWithValue("@wachtwoord", wachtwoord);
-            SqlDataReader reader = databaseConnection.ExecuteQueryReader(command);
+            SqlDataReader reader = DatabaseConnection.DbConnectionInstance.ExecuteQueryReader(command);
             while (reader.Read())
             {
                 return true;
@@ -77,7 +71,7 @@ namespace Steam.Context
             string query = "SELECT INLOGNAAM FROM ACCOUNT WHERE INLOGNAAM = @inlognaam";
             var command = new SqlCommand(query);
             command.Parameters.AddWithValue("@inlognaam", inlognaam);
-            SqlDataReader reader = databaseConnection.ExecuteQueryReader(command);
+            SqlDataReader reader = DatabaseConnection.DbConnectionInstance.ExecuteQueryReader(command);
             while (reader.Read())
             {
                 return true;
@@ -90,7 +84,7 @@ namespace Steam.Context
             string query = "SELECT INLOGNAAM FROM ACCOUNT WHERE NICKNAME = @nickname";
             var command = new SqlCommand(query);
             command.Parameters.AddWithValue("@nickname", nickname);
-            SqlDataReader reader = databaseConnection.ExecuteQueryReader(command);
+            SqlDataReader reader = DatabaseConnection.DbConnectionInstance.ExecuteQueryReader(command);
             while (reader.Read())
             {
                 return true;
@@ -104,7 +98,7 @@ namespace Steam.Context
             var command = new SqlCommand(query);
             command.Parameters.AddWithValue("@inlognaam", speler.Inlognaam);
             command.Parameters.AddWithValue("@wachtwoord", speler.Wachtwoord);
-            SqlDataReader reader = databaseConnection.ExecuteQueryReader(command);
+            SqlDataReader reader = DatabaseConnection.DbConnectionInstance.ExecuteQueryReader(command);
             if (reader.Read())
             {
                 speler.ID = reader.GetInt32(0);
@@ -127,7 +121,7 @@ namespace Steam.Context
             command.Parameters.Add(new SqlParameter("@paraWachtwoord", speler.Wachtwoord));
             command.Parameters.Add(new SqlParameter("@paraWoonplaats", speler.Woonplaats));
             command.Parameters.Add(new SqlParameter("@paraEmailadres", speler.Emailadres));
-            databaseConnection.ExecuteProcedure(command);
+            DatabaseConnection.DbConnectionInstance.ExecuteProcedure(command);
         }
 
         public Speler GetSpelerByID(int ID)
@@ -135,7 +129,7 @@ namespace Steam.Context
             string query = "SELECT * FROM ACCOUNT WHERE ID = @ID";
             var command = new SqlCommand(query);
             command.Parameters.AddWithValue("@ID", ID);
-            SqlDataReader reader = databaseConnection.ExecuteQueryReader(command);
+            SqlDataReader reader = DatabaseConnection.DbConnectionInstance.ExecuteQueryReader(command);
             while (reader.Read())
             {
                 Speler speler = new Speler(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), new List<Game>(), new Winkelwagen());
