@@ -35,9 +35,9 @@ namespace Steam.Repositories
         {
             return context.GetAllGames();
         }
-        public List<Review> GetReviewsByGameID(int ID)
+        public List<Review> GetReviewsByGame(Game game)
         {
-            List<Review> reviews = context.GetReviewsByGameID(ID);
+            List<Review> reviews = context.GetReviewsByGame(game);
             foreach(Review review in reviews)
             {
                 review.Game = context.GetGameByID(review.GameID);

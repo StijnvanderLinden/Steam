@@ -10,7 +10,7 @@ namespace Steam.Comparers
     {
         public int Compare(Game x, Game y)
         {
-            return y.Sterren.CompareTo(x.Sterren);
+            return x.Sterren.CompareTo(y.Sterren);
         }
     }
 }

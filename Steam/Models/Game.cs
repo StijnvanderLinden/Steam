@@ -32,17 +32,13 @@ namespace Steam.Models
             Beschrijving = beschrijving;
             IMGUrl = imgurl;
             Bestellingen = new List<Bestelling>();
-            Reviews = GetReviews(this.ID);
-            if(Reviews == null)
-            {
-                Reviews = new List<Review>();
-            }
+            Reviews = new List<Review>();
             UitgeverID = uitgeverID;
         }
 
         public List<Review> GetReviews(int ID)
         {
-            return repo.GetReviewsByGameID(this.ID);
+            return repo.GetReviewsByGame(this);
         }
 
         public void UpdateSterren(Review review)

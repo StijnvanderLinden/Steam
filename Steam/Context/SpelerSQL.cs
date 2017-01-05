@@ -10,12 +10,6 @@ namespace Steam.Context
 {
     public class SpelerSQL : ISpeler
     {
-        DatabaseConnection databaseConnection;
-        public SpelerSQL()
-        {
-            databaseConnection = new DatabaseConnection();
-        }
-
         public void AddReview(Review review)
         {
             string query = "INSERT INTO REVIEW (GameID, AccountID, Titel, Comment, AantalSterren) VALUES (@GameID, @AccountID, @Titel, @Comment, @Sterren)";
@@ -25,7 +19,7 @@ namespace Steam.Context
             command.Parameters.AddWithValue("@Titel", review.Titel);
             command.Parameters.AddWithValue("@Comment", review.Comment);
             command.Parameters.AddWithValue("@Sterren", review.AantalSterren);
-            databaseConnection.ExecuteQuery(command);
+            DatabaseConnection.DbConnectionInstance.ExecuteQuery(command);
         }
 
         public List<Game> GetBibliotheek(Speler speler)
@@ -33,7 +27,7 @@ namespace Steam.Context
             string query = "SELECT * FROM BIBLIOTHEEK WHERE AccountID = @ID";
             var command = new SqlCommand(query);
             command.Parameters.AddWithValue("@ID", speler.ID);
-            SqlDataReader reader = databaseConnection.ExecuteQueryReader(command);
+            SqlDataReader reader = DatabaseConnection.DbConnectionInstance.ExecuteQueryReader(command);
             List<Game> games = new List<Game>();
             while (reader.Read())
             {

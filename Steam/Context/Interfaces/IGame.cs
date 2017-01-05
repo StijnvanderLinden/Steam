@@ -14,6 +14,6 @@ namespace Steam.Context
         void UpdateSterren(Game game);
         Game GetGameByID(int ID);
         List<Game> GetAllGames();
-        List<Review> GetReviewsByGameID(int ID);
+        List<Review> GetReviewsByGame(Game game);
     }
 }
