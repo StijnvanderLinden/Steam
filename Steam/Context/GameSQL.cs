@@ -71,10 +71,10 @@ namespace Steam.Context
 
         public void DeleteGame(Game game)
         {
-            string query = "DELETE FROM GAME WHERE ID = @gameID";
-            var command = new SqlCommand(query);
-            command.Parameters.AddWithValue("@gameID", game.ID);
-            DatabaseConnection.DbConnectionInstance.ExecuteQuery(command);
+            var command = new SqlCommand("DeleteGame");
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.Add(new SqlParameter("@paraGameID", game.ID));
+            DatabaseConnection.DbConnectionInstance.ExecuteProcedure(command);
         }
 
         public void UpdateSterren(Game game)
@@ -99,6 +99,14 @@ namespace Steam.Context
                 reviews.Add(review);
             }
             return reviews;
+        }
+
+        public void DeleteReview(Review review)
+        {
+            string query = "DELETE FROM REVIEW WHERE ID = @ID";
+            var command = new SqlCommand(query);
+            command.Parameters.AddWithValue("@ID", review.ID);
+            DatabaseConnection.DbConnectionInstance.ExecuteQuery(command);
         }
     }
 }

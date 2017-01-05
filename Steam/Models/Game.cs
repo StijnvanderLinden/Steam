@@ -36,11 +36,6 @@ namespace Steam.Models
             UitgeverID = uitgeverID;
         }
 
-        public List<Review> GetReviews(int ID)
-        {
-            return repo.GetReviewsByGame(this);
-        }
-
         public void UpdateSterren(Review review)
         {
             Reviews.Add(review);

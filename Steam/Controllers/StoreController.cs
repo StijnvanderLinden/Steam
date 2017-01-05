@@ -17,9 +17,6 @@ namespace Steam.Controllers
         BeheerderRepository br = new BeheerderRepository(new BeheerderSQL());
         GameRepository gr = new GameRepository(new GameSQL());
         Games Games = new Games();
-        bool naam = false;
-        bool prijs = false;
-        bool sterren = false;
         public ActionResult Index()
         {
             return View(Games);
@@ -52,7 +49,7 @@ namespace Steam.Controllers
             {
                 if (sterren != null)
                 {
-                    Review review = new Review(game.ID, speler.ID, titel, comment, (int)sterren);
+                    Review review = new Review(game.ID, speler.ID, speler, game, titel, comment, (int)sterren);
                     try
                     {
                         sr.AddReview(review);
@@ -129,6 +126,46 @@ namespace Steam.Controllers
                     Games.games.Sort(new SterrenComparer());
                     break;
             }
+            return View("Index", Games);
+        }
+
+        public ActionResult DeleteReview(int id)
+        {
+            Game game = (Game)Session["Game"];
+            Review review = null;
+            foreach (Review r in game.Reviews)
+            {
+                if (r.ID == id)
+                {
+                    review = r;
+                    break;
+                }
+            }
+            if (review == null)
+            {
+                return HttpNotFound();
+            }
+            game.Reviews.Remove(review);
+            gr.DeleteReview(review);
+            return View("Details", game);
+        }
+
+        public ActionResult DeleteGame(int id)
+        {
+            Game game = null;
+            foreach(Game g in Games.games)
+            {
+                if(g.ID == id)
+                {
+                    game = g;
+                }
+            }
+            if(game == null)
+            {
+                return HttpNotFound();
+            }
+            Games.games.Remove(game);
+            gr.DeleteGame(game);
             return View("Index", Games);
         }
     }
