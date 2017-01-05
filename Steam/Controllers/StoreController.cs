@@ -24,7 +24,7 @@ namespace Steam.Controllers
         {
             return View(Games);
         }
-        
+
         public ActionResult Details(int id)
         {
             Game game = null;
@@ -50,7 +50,7 @@ namespace Steam.Controllers
             Game game = (Game)Session["Game"];
             if (titel != null)
             {
-                if(sterren != null)
+                if (sterren != null)
                 {
                     Review review = new Review(game.ID, speler.ID, titel, comment, (int)sterren);
                     try
@@ -73,7 +73,7 @@ namespace Steam.Controllers
                 Response.Write("<script>alert('Vul een titel in.');</script>");
             }
             return View("Details", game);
-            
+
         }
 
         public ActionResult Toevoegen(int id)
@@ -94,9 +94,9 @@ namespace Steam.Controllers
                 return HttpNotFound();
             }
             bool exists = false;
-            foreach(Game g in speler.Winkelwagen.Games)
+            foreach (Game g in speler.Winkelwagen.Games)
             {
-                if(g.ID == game.ID)
+                if (g.ID == game.ID)
                 {
                     exists = true;
                     break;
@@ -118,39 +118,18 @@ namespace Steam.Controllers
             switch (comparer)
             {
                 case "naam":
-                    if (!naam)
-                    {
-                        Games.games.Sort(new NaamComparer());
-                    }
-                    else
-                    {
-                        Games.games.Sort(new NaamDescComparer());
-                    }
+                    Games.games.Sort(new NaamComparer());
                     break;
 
                 case "prijs":
-                    if (!prijs)
-                    {
-                        Games.games.Sort(new PrijsComparer());
-                    }
-                    else
-                    {
-                        Games.games.Sort(new PrijsDescComparer());
-                    }
+                    Games.games.Sort(new PrijsComparer());
                     break;
 
                 case "sterren":
-                    if (!sterren)
-                    {
-                        Games.games.Sort(new SterrenComparer());
-                    }
-                    else
-                    {
-                        Games.games.Sort(new SterrenDescComparer());
-                    }
+                    Games.games.Sort(new SterrenComparer());
                     break;
             }
-            return View("");
+            return View("Index", Games);
         }
     }
 }

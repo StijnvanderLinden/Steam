@@ -117,11 +117,8 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Comparers\NaamComparer.cs" />
-    <Compile Include="Comparers\NaamDescComparer.cs" />
     <Compile Include="Comparers\PrijsComparer.cs" />
-    <Compile Include="Comparers\PrijsDescComparer.cs" />
     <Compile Include="Comparers\SterrenComparer.cs" />
-    <Compile Include="Comparers\SterrenDescComparer.cs" />
     <Compile Include="Context\BeheerderSQL.cs" />
     <Compile Include="Context\BestellingSQL.cs" />
     <Compile Include="Context\CategorieSQL.cs" />
