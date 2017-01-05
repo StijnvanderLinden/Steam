@@ -50,7 +50,7 @@ namespace Steam.Context
         public SqlDataReader ExecuteQueryReader(SqlCommand command)
         {
             command.Connection = GetConnection();
-            SqlDataReader reader = command.ExecuteReader();
+            var reader = command.ExecuteReader();
             lastReader = reader;
             return reader;
         }

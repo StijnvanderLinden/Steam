@@ -156,7 +156,7 @@ namespace Steam.Controllers
                     }
                     break;
             }
-            return View("Index", Games);
+            return View("Index");
         }
     }
 }

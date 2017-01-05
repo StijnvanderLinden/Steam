@@ -9,5 +9,10 @@ namespace Steam.Context
 {
     public class CategorieSQL : ICategorie
     {
+        DatabaseConnection databaseConnection;
+        public CategorieSQL()
+        {
+            databaseConnection = new DatabaseConnection();
+        }
     }
 }

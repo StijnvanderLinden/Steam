@@ -10,6 +10,11 @@ namespace Steam.Context
 {
     public class BestellingSQL : IBestelling
     {
+        DatabaseConnection databaseConnection;
+        public BestellingSQL()
+        {
+            databaseConnection = new DatabaseConnection();
+        }
 
         public void AddBestelling(Bestelling bestelling)
         {
@@ -30,7 +35,7 @@ namespace Steam.Context
                 i++;
             }
             command.Parameters.Add(new SqlParameter("@paraDatatable", table));
-            DatabaseConnection.DbConnectionInstance.ExecuteProcedure(command);
+            databaseConnection.ExecuteProcedure(command);
         }
         public void DeleteBestelling(Bestelling bestelling)
         {

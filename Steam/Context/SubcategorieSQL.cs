@@ -9,6 +9,10 @@ namespace Steam.Context
 {
     public class SubcategorieSQL : ISubcategorie
     {
-
+        DatabaseConnection databaseConnection;
+        public SubcategorieSQL()
+        {
+            databaseConnection = new DatabaseConnection();
+        }
     }
 }
