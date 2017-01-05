@@ -42,6 +42,7 @@ namespace Steam.Repositories
             {
                 review.Game = context.GetGameByID(review.GameID);
                 review.Speler = br.GetSpelerByID(review.SpelerID);
+                game.Reviews.Add(review);
             }
             return reviews;
         }
@@ -49,6 +50,11 @@ namespace Steam.Repositories
         public void UpdateSterren(Game game)
         {
             context.UpdateSterren(game);
+        }
+
+        public void DeleteReview(Review review)
+        {
+            context.DeleteReview(review);
         }
     }
 }

@@ -6,6 +6,7 @@
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 @{
     ViewBag.Title = "Store";
+    Account account = (Account)Session["Account"];
 }
 
 <h2>Store</h2>
@@ -31,8 +32,18 @@
                 €@game.Prijs
             </td>
             <td>
-                Sterren: @game.Sterren
+                @game.Sterren
             </td>
+            @if (account is Beheerder)
+            {
+                <td>
+                    @using (Html.BeginForm("DeleteGame", "Store", new { id = game.ID }))
+                    {
+                    <button type="submit" class="btn btn-default">Delete</button>
+                    }
+                </td>
+            }
         </tr>
+        
     }
 </table>

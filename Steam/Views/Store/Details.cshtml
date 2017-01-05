@@ -60,10 +60,6 @@
         </div>
     </form>
 }
-@if (account is Beheerder)
-{
-
-}
 <br>
 <h2>Reviews</h2>
 <br>
@@ -73,7 +69,7 @@
 }
 else
 {
-    foreach (Review review in Model.GetReviews(Model.ID))
+    foreach (Review review in Model.Reviews)
     {
         <div class="section">
             <div class="container">
@@ -85,12 +81,19 @@ else
                             <p>
                                 @review.Comment
                             </p>
-                            <h4>@review.AantalSterren</h4>
+                            <h4>Sterren: @review.AantalSterren</h4>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        if(account is Beheerder)
+        {
+            using (Html.BeginForm("DeleteReview", "Store", new { id = review.ID }))
+            {
+                <button type="submit" class="btn btn-default">Delete</button>
+            }
+        }
     }
 }
 <script>

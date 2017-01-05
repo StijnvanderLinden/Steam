@@ -16,6 +16,17 @@ namespace Steam.Models
         public int GameID { get; set; }
         public int SpelerID { get; set; }
 
+        public Review(int gameID, int spelerID, Speler speler, Game game, string titel, string comment, int aantalsterren)
+        {
+            GameID = gameID;
+            SpelerID = spelerID;
+            Speler = speler;
+            Game = game;
+            Titel = titel;
+            Comment = comment;
+            AantalSterren = aantalsterren;
+        }
+
         public Review(int gameID, int spelerID, string titel, string comment, int aantalsterren)
         {
             GameID = gameID;
