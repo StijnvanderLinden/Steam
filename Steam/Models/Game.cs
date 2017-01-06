@@ -22,7 +22,20 @@ namespace Steam.Models
 
         public Game()
         {
+
         }
+        public Game(string naam, decimal prijs, int uitgeverID, decimal sterren, string beschrijving, string imgurl)
+        {
+            Naam = naam;
+            Prijs = prijs;
+            Sterren = sterren;
+            Beschrijving = beschrijving;
+            IMGUrl = imgurl;
+            Bestellingen = new List<Bestelling>();
+            Reviews = new List<Review>();
+            UitgeverID = uitgeverID;
+        }
+
         public Game(int id, string naam, decimal prijs, int uitgeverID, decimal sterren, string beschrijving, string imgurl)
         {
             ID = id;

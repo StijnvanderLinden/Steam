@@ -169,9 +169,25 @@ namespace Steam.Controllers
             return View("Index", Games);
         }
 
-        public ActionResult GameToevoegen()
+        public ActionResult GameToevoegen(string naam, decimal? prijs, string beschrijving, string imgurl, int? uitgeverID)
         {
             return View("Toevoegen");
+        }
+
+        public ActionResult GameToevoegenBevestigen(string naam, decimal? prijs, string beschrijving, string imgurl, int? uitgeverID)
+        {
+            if (naam != null && prijs != null && beschrijving != null && imgurl != null && uitgeverID != null)
+            {
+                Game game = new Game(naam, (decimal)prijs, (int)uitgeverID, 0, beschrijving, imgurl);
+                Games.games.Add(game);
+                gr.AddGame(game);
+                return View("Index", Games);
+            }
+            else
+            {
+                Response.Write("<script>alert('Niet alle invoervelden zijn ingevuld.');</script>");
+                return View("Toevoegen");
+            }
         }
     }
 }

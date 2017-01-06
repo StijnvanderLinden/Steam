@@ -11,6 +11,10 @@
     <p>Je hebt geen games in je bibliotheek.</p>
 }
 <table class="table">
+    <tr>
+        <td></td>
+        <td><a href="@Url.Action("Compare", "Store", new { comparer = "naam"} )">Naam</a></td>
+    </tr>
     @foreach (var game in speler.Games)
     {
         <tr>
