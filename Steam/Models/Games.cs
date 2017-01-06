@@ -25,5 +25,10 @@ namespace Steam.Models
         {
             return repo.GetAllGames();
         }
+
+        public List<Game> CheckCategorie(int categorieID)
+        {
+            return repo.CheckCategorie(categorieID);
+        }
     }
 }

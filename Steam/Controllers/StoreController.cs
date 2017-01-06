@@ -189,5 +189,32 @@ namespace Steam.Controllers
                 return View("Toevoegen");
             }
         }
+
+        public ActionResult CheckCategorie(string categorie)
+        {
+            List<Game> games = new List<Game>();
+            switch (categorie)
+            {
+                case "actie":
+                    games = gr.CheckCategorie(1);
+                    break;
+                case "avontuur":
+                    games = gr.CheckCategorie(2);
+                    break;
+                case "fps":
+                    games = gr.CheckCategorie(3);
+                    break;
+                case "shooter":
+                    games = gr.CheckCategorie(4);
+                    break;
+                case "strategie":
+                    games = gr.CheckCategorie(5);
+                    break;
+                case "geen":
+                    return View("Index", Games);
+            }
+            Games.games = games;
+            return View("Index", Games);
+        }
     }
 }

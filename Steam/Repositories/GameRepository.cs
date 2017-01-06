@@ -62,5 +62,10 @@ namespace Steam.Repositories
         {
             context.DeleteReview(review);
         }
+
+        public List<Game> CheckCategorie(int categorieID)
+        {
+            return context.CheckCategorie(categorieID);
+        }
     }
 }

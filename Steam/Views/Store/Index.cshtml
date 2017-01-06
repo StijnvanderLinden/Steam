@@ -47,3 +47,13 @@
         
     }
 </table>
+
+<div id="categorie">
+    <h3>Categorieën</h3>
+    <a href="@Url.Action("CheckCategorie", "Store", new { categorie = "geen"})">Geen filter</a><br>
+    <a href="@Url.Action("CheckCategorie", "Store", new { categorie = "actie"})">Actie</a><br>
+    <a href="@Url.Action("CheckCategorie", "Store", new { categorie = "avontuur"})">Avontuur</a><br>
+    <a href="@Url.Action("CheckCategorie", "Store", new { categorie = "fps"})">FPS</a><br>
+    <a href="@Url.Action("CheckCategorie", "Store", new { categorie = "shooter"})">Shooter</a><br>
+    <a href="@Url.Action("CheckCategorie", "Store", new { categorie = "strategie"})">Strategie</a><br>
+</div>

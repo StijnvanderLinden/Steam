@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Steam.Models
 {
-    public class Categorie : IComparable<Categorie>
+    public class Categorie
     {
         public int ID { get; set; }
         public string Genre { get; set; }
@@ -13,11 +13,6 @@ namespace Steam.Models
         {
             ID = id;
             Genre = genre;
-        }
-
-        public int CompareTo(Categorie other)
-        {
-            throw new NotImplementedException();
         }
     }
 }

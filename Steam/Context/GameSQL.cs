@@ -97,5 +97,20 @@ namespace Steam.Context
             command.Parameters.AddWithValue("@ID", review.ID);
             DatabaseConnection.DbConnectionInstance.ExecuteQuery(command);
         }
+
+        public List<Game> CheckCategorie(int categorieID)
+        {
+            string query = "SELECT * FROM GAME WHERE ID IN (SELECT GameID FROM GAME_CATEGORIE WHERE CategorieID = @CategorieID)";
+            var command = new SqlCommand(query);
+            command.Parameters.AddWithValue("@CategorieID", categorieID);
+            SqlDataReader reader = DatabaseConnection.DbConnectionInstance.ExecuteQueryReader(command);
+            List<Game> games = new List<Game>();
+            while (reader.Read())
+            {
+                Game g = new Game(reader.GetInt32(0), reader.GetString(2), reader.GetDecimal(3), reader.GetInt32(1), reader.GetDecimal(5), reader.GetString(6), reader.GetString(4));
+                games.Add(g);
+            }
+            return games;
+        }
     }
 }
