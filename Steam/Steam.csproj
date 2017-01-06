@@ -184,6 +184,7 @@
     <Content Include="Views\Store\Details.cshtml" />
     <Content Include="Views\Bestelling\Index.cshtml" />
     <Content Include="Views\Bibliotheek\Index.cshtml" />
+    <Content Include="Views\Store\Toevoegen.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

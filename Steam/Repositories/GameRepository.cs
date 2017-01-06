@@ -33,14 +33,20 @@ namespace Steam.Repositories
 
         public List<Game> GetAllGames()
         {
-            return context.GetAllGames();
+            List<Game> games = context.GetAllGames();
+            foreach(Game game in games)
+            {
+                GetReviewsByGame(game);
+            }
+            return games;
         }
         public List<Review> GetReviewsByGame(Game game)
         {
             List<Review> reviews = context.GetReviewsByGame(game);
+            game.Reviews.Clear();
             foreach(Review review in reviews)
             {
-                review.Game = context.GetGameByID(review.GameID);
+                review.Game = game;
                 review.Speler = br.GetSpelerByID(review.SpelerID);
                 game.Reviews.Add(review);
             }

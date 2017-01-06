@@ -15,6 +15,5 @@ namespace Steam.Controllers
         {
             return View(games);
         }
-        
     }
 }

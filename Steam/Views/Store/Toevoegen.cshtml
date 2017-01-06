@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Toevoegen";
+}
+
+<h2>Game toevoegen</h2>
+
+<div class="position">
+    <form action="/Store/GameToevoegen" method="post">
+        <br />
+        <div class="form-group">
+            <label for="naam">Naam</label>
+            <input type="text" class="form-control" name="naam">
+        </div>
+        <div class="form-group">
+            <label for="prijs">Prijs</label>
+            <input type="text" class="form-control" name="prijs">
+        </div>
+        <div class="form-group">
+            <label for="beschrijving">Beschrijving</label>
+            <input type="password" class="form-control" name="beschrijving">
+        </div>
+        <div class="form-group">
+            <label for="imgurl">Image URL</label>
+            <input type="password" class="form-control" name="imgurl">
+        </div>
+        <div class="form-group">
+            <label for="uitgeverID;">UitgeverID</label>
+            <input type="password" class="form-control" name="uitgeverID">
+        </div>
+        <button type="submit" class="btn btn-default">Bevestigen</button>
+    </form>
+</div>

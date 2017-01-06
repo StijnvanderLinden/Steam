@@ -168,5 +168,10 @@ namespace Steam.Controllers
             gr.DeleteGame(game);
             return View("Index", Games);
         }
+
+        public ActionResult GameToevoegen()
+        {
+            return View("Toevoegen");
+        }
     }
 }

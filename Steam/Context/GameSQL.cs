@@ -43,18 +43,7 @@ namespace Steam.Context
                 Game game = new Game(reader.GetInt32(0), reader.GetString(2), reader.GetDecimal(3), reader.GetInt32(1), reader.GetDecimal(5), reader.GetString(6), reader.GetString(4));
                 games.Add(game);
             }
-            foreach(Game game in games)
-            {
-                GetReviewsByGame(game);
-            }
-            if(games.Count > 0)
-            {
-                return games;
-            }
-            else
-            {
-                return null;
-            }
+            return games;
         }
         public void AddGame(Game game)
         {
