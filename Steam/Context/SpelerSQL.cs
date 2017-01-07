@@ -21,6 +21,27 @@ namespace Steam.Context
             command.Parameters.AddWithValue("@Sterren", review.AantalSterren);
             DatabaseConnection.DbConnectionInstance.ExecuteQuery(command);
         }
+        public void AddBestelling(Bestelling bestelling)
+        {
+            var command = new SqlCommand("BestellingInvoeren");
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.Add(new SqlParameter("@paraAccountID", bestelling.SpelerID));
+            command.Parameters.Add(new SqlParameter("@paraBesteldatum", bestelling.Besteldatum));
+            DataTable table = new DataTable();
+            table.Columns.Add("ID", typeof(int));
+            table.Columns.Add("GameID", typeof(int));
+            int i = 1;
+            foreach (Game game in bestelling.Games)
+            {
+                DataRow row = table.NewRow();
+                row["ID"] = i;
+                row["GameID"] = game.ID;
+                table.Rows.Add(row);
+                i++;
+            }
+            command.Parameters.Add(new SqlParameter("@paraDatatable", table));
+            DatabaseConnection.DbConnectionInstance.ExecuteQuery(command);
+        }
 
         public List<Game> GetBibliotheek(Speler speler)
         {

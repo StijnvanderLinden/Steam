@@ -16,6 +16,6 @@ namespace Steam.Context
         List<Game> GetAllGames();
         List<Review> GetReviewsByGame(Game game);
         void DeleteReview(Review review);
-        List<Game> CheckCategorie(int categorieID);
+        List<Game> CheckCategorie(int ID);
     }
 }

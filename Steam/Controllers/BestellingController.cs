@@ -12,7 +12,7 @@ namespace Steam.Controllers
     public class BestellingController : Controller
     {
         // GET: Bestelling
-        BestellingRepository br = new BestellingRepository(new BestellingSQL());
+        SpelerRepository sr = new SpelerRepository(new SpelerSQL());
         Speler speler;
         Games games = new Games();
         public ActionResult Index()
@@ -43,7 +43,7 @@ namespace Steam.Controllers
             if(speler.Winkelwagen.Games.Count > 0)
             {
                 Bestelling bestelling = new Bestelling(speler.ID, speler.Winkelwagen.Games, DateTime.Now);
-                br.AddBestelling(bestelling);
+                sr.AddBestelling(bestelling);
                 foreach(Game game in bestelling.Games)
                 {
                     speler.Games.Add(game);

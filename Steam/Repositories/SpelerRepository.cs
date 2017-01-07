@@ -22,6 +22,11 @@ namespace Steam.Repositories
             context.AddReview(review);
         }
 
+        public void AddBestelling(Bestelling bestelling)
+        {
+            context.AddBestelling(bestelling);
+        }
+
         public List<Game> GetBibliotheek(Speler speler)
         {
             List<Game> games1 = context.GetBibliotheek(speler);
