@@ -10,10 +10,6 @@ namespace Steam.Models
         public int ID { get; set; }
         public string Naam { get; set; }
         public string Emailadres { get; set; }
-        public Uitgever(int id)
-        {
-            ID = id;
-        }
         public Uitgever(int id, string naam, string emailadres)
         {
             ID = id;

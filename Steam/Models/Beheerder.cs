@@ -9,7 +9,7 @@ namespace Steam.Models
     {
         public Beheerder()
         {
-
+            
         }
         public Beheerder(string inlognaam, string wachtwoord) : base(inlognaam, wachtwoord)
         {
