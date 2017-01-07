@@ -121,21 +121,13 @@
     <Compile Include="Comparers\SterrenComparer.cs" />
     <Compile Include="Context\BeheerderSQL.cs" />
     <Compile Include="Context\BestellingSQL.cs" />
-    <Compile Include="Context\CategorieSQL.cs" />
     <Compile Include="Context\DatabaseConnection.cs" />
     <Compile Include="Context\GameSQL.cs" />
-    <Compile Include="Context\Interfaces\ICategorie.cs" />
     <Compile Include="Context\Interfaces\IBeheerder.cs" />
     <Compile Include="Context\Interfaces\IBestelling.cs" />
     <Compile Include="Context\Interfaces\IGame.cs" />
-    <Compile Include="Context\Interfaces\IReview.cs" />
     <Compile Include="Context\Interfaces\ISpeler.cs" />
-    <Compile Include="Context\Interfaces\ISubcategorie.cs" />
-    <Compile Include="Context\Interfaces\IUitgever.cs" />
-    <Compile Include="Context\ReviewSQL.cs" />
     <Compile Include="Context\SpelerSQL.cs" />
-    <Compile Include="Context\SubcategorieSQL.cs" />
-    <Compile Include="Context\UitgeverSQL.cs" />
     <Compile Include="Controllers\BestellingController.cs" />
     <Compile Include="Controllers\BibliotheekController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -152,21 +144,15 @@
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Games.cs" />
     <Compile Include="Models\Review.cs" />
-    <Compile Include="Models\Reviews.cs" />
     <Compile Include="Models\Speler.cs" />
     <Compile Include="Models\Subcategorie.cs" />
     <Compile Include="Models\Uitgever.cs" />
-    <Compile Include="Models\Uitgevers.cs" />
     <Compile Include="Models\Winkelwagen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BeheerderRepository.cs" />
     <Compile Include="Repositories\BestellingRepository.cs" />
-    <Compile Include="Repositories\CategorieRepository.cs" />
     <Compile Include="Repositories\GameRepository.cs" />
-    <Compile Include="Repositories\ReviewRepository.cs" />
     <Compile Include="Repositories\SpelerRepository.cs" />
-    <Compile Include="Repositories\SubcategorieRepository.cs" />
-    <Compile Include="Repositories\UitgeverRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

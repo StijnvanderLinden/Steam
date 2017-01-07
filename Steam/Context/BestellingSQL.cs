@@ -31,43 +31,5 @@ namespace Steam.Context
             command.Parameters.Add(new SqlParameter("@paraDatatable", table));
             DatabaseConnection.DbConnectionInstance.ExecuteProcedure(command);
         }
-        public void DeleteBestelling(Bestelling bestelling)
-        {
-            throw new NotImplementedException();
-        }
-
-        //public List<Bestelling> GetBestellingen()
-        //{
-        //    string query = "SELECT * FROM BESTELLING";
-        //    var command = new SqlCommand(query);
-        //    SqlDataReader reader = databaseConnection.ExecuteQueryReader(command);
-        //    List<Bestelling> bestellingen = new List<Bestelling>();
-        //    while (reader.Read())
-        //    {
-        //        Bestelling bestelling = new Bestelling(reader.GetInt32(1), reader.GetDateTime(2), reader.GetDecimal(3));
-        //        bestellingen.Add(bestelling);
-        //    }
-        //    if(bestellingen.Count() > 0)
-        //    {
-        //        return bestellingen;
-        //    }
-        //    else
-        //    {
-        //        return null;
-        //    }
-        //}
-
-        //public Bestelling GetBestellingByID(int ID)
-        //{
-        //    string query = "SELECT * FROM BESTELLING WHERE ID = @ID";
-        //    var command = new SqlCommand(query);
-        //    SqlDataReader reader = databaseConnection.ExecuteQueryReader(command);
-        //    while (reader.Read())
-        //    {
-        //        Bestelling bestelling = new Bestelling(reader.GetInt32(0), reader.GetInt32(1), reader.GetDateTime(2), reader.GetDecimal(3));
-        //        return bestelling;
-        //    }
-        //    return null;
-        //}
     }
 }

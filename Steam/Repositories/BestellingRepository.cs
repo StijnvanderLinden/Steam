@@ -20,20 +20,5 @@ namespace Steam.Repositories
         {
             context.AddBestelling(bestelling);
         }
-
-        public void DeleteBestelling(Bestelling bestelling)
-        {
-            context.DeleteBestelling(bestelling);
-        }
-
-        //public List<Bestelling> GetBestellingen()
-        //{
-        //    return context.GetBestellingen();
-        //}
-
-        //public Bestelling GetBestellingByID(int ID)
-        //{
-        //    return context.GetBestellingByID(ID);
-        //}
     }
 }
