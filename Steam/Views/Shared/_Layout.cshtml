@@ -25,12 +25,10 @@
             </div>
 
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="/Store/Index" class="navbar-brand">Store</a></li>
-                </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (account is Speler)
                     {
+                        <li>@Html.ActionLink("Store", "Index", "Store")</li>
                         <li>@Html.ActionLink(account.Nickname, "Index", "Bibliotheek")</li>
                         <li>@Html.ActionLink("Bibliotheek", "Index", "Bibliotheek")</li>
                         <li>@Html.ActionLink("Bestelling", "Index", "Bestelling")</li>
@@ -38,11 +36,13 @@
                     }
                     else if (account is Beheerder)
                     {
+                        <li>@Html.ActionLink("Store", "Index", "Store")</li>
                         <li>@Html.ActionLink("Game toevoegen", "GameToevoegen", "Store")</li>
                         <li>@Html.ActionLink("Uitloggen", "Uitloggen", "Inlog")</li>
                     }
                     else
                     {
+                        <li>@Html.ActionLink("Store", "Index", "Store")</li>
                         <li>@Html.ActionLink("Registreren", "Index", "Registreer")</li>
                         <li>@Html.ActionLink("Log in", "Index", "Inlog")</li>
                     }

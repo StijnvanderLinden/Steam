@@ -7,7 +7,7 @@
 }
 
 #categorie{
-    position: absolute;
-    top: 10%;
-    left:50%;
+    position: fixed;
+    top: 7%;
+    left:85%;
 }
