@@ -20,31 +20,38 @@ namespace Steam.Controllers
         
         public ActionResult Registreer(string nickname, string inlognaam, string wachtwoord, string herhaal_wachtwoord, string woonplaats, string emailadres)
         {
-            if (!br.CheckNickname(nickname))
+            if(wachtwoord.Length >= 3)
             {
-                if (!br.CheckInlognaam(inlognaam))
+                if (!br.CheckNickname(nickname))
                 {
-                    if(wachtwoord == herhaal_wachtwoord)
+                    if (!br.CheckInlognaam(inlognaam))
                     {
-                        Speler speler = new Speler(nickname, inlognaam, wachtwoord, woonplaats, emailadres, new List<Game>(), new Winkelwagen());
-                        br.AddSpeler(speler);
-                        return RedirectToAction("Index", "Inlog");
+                        if (wachtwoord == herhaal_wachtwoord)
+                        {
+                            Speler speler = new Speler(nickname, inlognaam, wachtwoord, woonplaats, emailadres, new List<Game>(), new Winkelwagen());
+                            br.AddSpeler(speler);
+                            return RedirectToAction("Index", "Inlog");
+                        }
+                        else
+                        {
+                            Response.Write("<script>alert('2e wachtwoord is niet hetzelfde.');</script>");
+                        }
                     }
                     else
                     {
-                        Response.Write("<script>alert('2e wachtwoord is niet hetzelfde.');</script>");
+                        Response.Write("<script>alert('Inlognaam bestaat al.');</script>");
                     }
                 }
                 else
                 {
-                    Response.Write("<script>alert('Inlognaam bestaat al.');</script>");
+                    Response.Write("<script>alert('Nickname bestaat al.');</script>");
                 }
             }
             else
             {
-                Response.Write("<script>alert('Nickname bestaat al.');</script>");
+                Response.Write("<script>alert('Wachtwoord moet minimaal 3 tekens bevatten.');</script>");
             }
-            return null;
+            return View("Index");
         }
     }
 }
