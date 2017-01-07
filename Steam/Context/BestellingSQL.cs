@@ -29,7 +29,7 @@ namespace Steam.Context
                 i++;
             }
             command.Parameters.Add(new SqlParameter("@paraDatatable", table));
-            DatabaseConnection.DbConnectionInstance.ExecuteProcedure(command);
+            DatabaseConnection.DbConnectionInstance.ExecuteQuery(command);
         }
     }
 }

@@ -122,7 +122,7 @@ namespace Steam.Context
             command.Parameters.Add(new SqlParameter("@paraWachtwoord", speler.Wachtwoord));
             command.Parameters.Add(new SqlParameter("@paraWoonplaats", speler.Woonplaats));
             command.Parameters.Add(new SqlParameter("@paraEmailadres", speler.Emailadres));
-            DatabaseConnection.DbConnectionInstance.ExecuteProcedure(command);
+            DatabaseConnection.DbConnectionInstance.ExecuteQuery(command);
         }
 
         public Speler GetSpelerByID(int ID)

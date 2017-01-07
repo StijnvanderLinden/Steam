@@ -63,7 +63,7 @@ namespace Steam.Context
             var command = new SqlCommand("DeleteGame");
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.Add(new SqlParameter("@paraGameID", game.ID));
-            DatabaseConnection.DbConnectionInstance.ExecuteProcedure(command);
+            DatabaseConnection.DbConnectionInstance.ExecuteQuery(command);
         }
 
         public void UpdateSterren(Game game)

@@ -54,26 +54,5 @@ namespace Steam.Context
             lastReader = reader;
             return reader;
         }
-
-        public void ExecuteProcedure(SqlCommand command)
-        {
-            command.Connection = GetConnection();
-            command.ExecuteNonQuery();
-        }
-
-        public SqlDataReader ExecuteProcedureReader(string Procedure)
-        {
-            var connection = GetConnection();
-
-            using (var conn = GetConnection())
-            {
-                using (var command = new SqlCommand(Procedure, conn) { CommandType = System.Data.CommandType.StoredProcedure })
-                {
-                    var reader = command.ExecuteReader();
-                    lastReader = reader;
-                    return reader;
-                }
-            }
-        }
     }
 }
