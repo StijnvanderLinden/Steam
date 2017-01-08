@@ -49,9 +49,8 @@ namespace Steam.Models
             UitgeverID = uitgeverID;
         }
 
-        public void UpdateSterren(Review review)
+        public void UpdateSterren()
         {
-            Reviews.Add(review);
             decimal totaalSterren = 0;
             if(Reviews.Count > 0)
             {
@@ -60,14 +59,16 @@ namespace Steam.Models
                 {
                     totaalSterren += r.AantalSterren;
                 }
+                Sterren = totaalSterren / Reviews.Count;
+                Sterren = Math.Round(Sterren, 1);
+                repo.UpdateSterren(this);
             }
             else
             {
-                totaalSterren = review.AantalSterren;
+                Sterren = 0;
+                repo.UpdateSterren(this);
             }
-            Sterren = totaalSterren / Reviews.Count;
-            Math.Round(Sterren, 1);
-            repo.UpdateSterren(this);
+            
         }
     }
 }

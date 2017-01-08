@@ -53,7 +53,8 @@ namespace Steam.Controllers
                     try
                     {
                         sr.AddReview(review);
-                        game.UpdateSterren(review);
+                        game.Reviews.Add(review);
+                        game.UpdateSterren();
                     }
                     catch (Exception e)
                     {
@@ -146,6 +147,7 @@ namespace Steam.Controllers
                 return HttpNotFound();
             }
             game.Reviews.Remove(review);
+            game.UpdateSterren();
             gr.DeleteReview(review);
             return View("Details", game);
         }
