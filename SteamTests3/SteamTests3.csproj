@@ -80,7 +80,9 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Controllers\StoreControllerTests.cs" />
+    <Compile Include="Models\GameTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\GameRepositoryTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Steam\Steam.csproj">
