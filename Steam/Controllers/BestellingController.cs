@@ -43,7 +43,14 @@ namespace Steam.Controllers
             if(speler.Winkelwagen.Games.Count > 0)
             {
                 Bestelling bestelling = new Bestelling(speler.ID, speler.Winkelwagen.Games, DateTime.Now);
-                sr.AddBestelling(bestelling);
+                try
+                {
+                    sr.AddBestelling(bestelling);
+                }
+                catch
+                {
+                    Response.Write("<script>alert('Er is een fout in de connectie met de database.');</script>");
+                }
                 foreach(Game game in bestelling.Games)
                 {
                     speler.Games.Add(game);

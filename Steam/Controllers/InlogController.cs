@@ -20,27 +20,35 @@ namespace Steam.Controllers
 
         public ActionResult Login(string inlognaam, string wachtwoord)
         {
-            if(br.CheckGegevens(inlognaam, wachtwoord))
+            try
             {
-                if(br.CheckOfSpelerBestaat(inlognaam, wachtwoord))
+                if (br.CheckGegevens(inlognaam, wachtwoord))
                 {
-                    Speler speler = new Speler(inlognaam, wachtwoord);
-                    speler = br.GetSpeler(speler);
-                    speler.Games = sr.GetBibliotheek(speler);
-                    Session["Account"] = speler;
-                    return RedirectToAction("Index", "Home");
+                    if (br.CheckOfSpelerBestaat(inlognaam, wachtwoord))
+                    {
+                        Speler speler = new Speler(inlognaam, wachtwoord);
+                        speler = br.GetSpeler(speler);
+                        speler.Games = sr.GetBibliotheek(speler);
+                        Session["Account"] = speler;
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        Beheerder beheerder = new Beheerder(inlognaam, wachtwoord);
+                        beheerder = br.GetBeheerder(beheerder);
+                        Session["Account"] = beheerder;
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
                 else
                 {
-                    Beheerder beheerder = new Beheerder(inlognaam, wachtwoord);
-                    beheerder = br.GetBeheerder(beheerder);
-                    Session["Account"] = beheerder;
-                    return RedirectToAction("Index", "Home");
+                    Response.Write("<script>alert('Inlognaam of wachtwoord is onjuist.');</script>");
+                    return View("Index");
                 }
             }
-            else
+            catch
             {
-                Response.Write("<script>alert('Inlognaam of wachtwoord is onjuist.');</script>");
+                Response.Write("<script>alert('Er is een fout in de connectie met de database.');</script>");
                 return View("Index");
             }
         }

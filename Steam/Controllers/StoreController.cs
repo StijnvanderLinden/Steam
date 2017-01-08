@@ -60,7 +60,7 @@ namespace Steam.Controllers
                         }
                         catch (Exception e)
                         {
-                            e.Message.ToString();
+                            Response.Write("<script>alert('Vul het aantal sterren in.');</script>");
                         }
                     }
                     else
@@ -154,8 +154,15 @@ namespace Steam.Controllers
                 return HttpNotFound();
             }
             game.Reviews.Remove(review);
-            game.UpdateSterren();
-            gr.DeleteReview(review);
+            try
+            {
+                game.UpdateSterren();
+                gr.DeleteReview(review);
+            }
+            catch
+            {
+                Response.Write("<script>alert('Er is een fout in de connectie met de database.');</script>");
+            }
             return View("Details", game);
         }
 
@@ -174,7 +181,14 @@ namespace Steam.Controllers
                 return HttpNotFound();
             }
             Games.games.Remove(game);
-            gr.DeleteGame(game);
+            try
+            {
+                gr.DeleteGame(game);
+            }
+            catch
+            {
+                Response.Write("<script>alert('Er is een fout in de connectie met de database.');</script>");
+            }
             return View("Index", Games);
         }
 
@@ -189,7 +203,14 @@ namespace Steam.Controllers
             {
                 Game game = new Game(naam, (decimal)prijs, (int)uitgeverID, 0, beschrijving, imgurl);
                 Games.games.Add(game);
-                gr.AddGame(game);
+                try
+                {
+                    gr.AddGame(game);
+                }
+                catch
+                {
+                    Response.Write("<script>alert('Er is een fout in de connectie met de database.');</script>");
+                }
                 return View("Index", Games);
             }
             else
