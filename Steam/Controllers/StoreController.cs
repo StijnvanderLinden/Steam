@@ -47,23 +47,30 @@ namespace Steam.Controllers
             Game game = (Game)Session["Game"];
             if (titel != null)
             {
-                if (sterren != null)
+                if(titel.Length <= 15)
                 {
-                    Review review = new Review(game.ID, speler.ID, speler, game, titel, comment, (int)sterren);
-                    try
+                    if (sterren != null)
                     {
-                        sr.AddReview(review);
-                        game.Reviews.Add(review);
-                        game.UpdateSterren();
+                        Review review = new Review(game.ID, speler.ID, speler, game, titel, comment, (int)sterren);
+                        try
+                        {
+                            sr.AddReview(review);
+                            game.Reviews.Add(review);
+                            game.UpdateSterren();
+                        }
+                        catch (Exception e)
+                        {
+                            e.Message.ToString();
+                        }
                     }
-                    catch (Exception e)
+                    else
                     {
-                        e.Message.ToString();
+                        Response.Write("<script>alert('Vul het aantal sterren in.');</script>");
                     }
                 }
                 else
                 {
-                    Response.Write("<script>alert('Vul het aantal sterren in.');</script>");
+                    Response.Write("<script>alert('De titel mag nie langer zijn dan 15 characters.');</script>");
                 }
             }
             else
